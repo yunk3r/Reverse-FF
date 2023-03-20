@@ -1,0 +1,31 @@
+.answer-grid {
+    display: grid;
+    grid-template-rows: repeat(4, auto);
+    grid-auto-flow: column;
+    grid-auto-columns: min(100vw/2 - 10px,200px);
+  }
+
+.grid-item {
+    color: white; 
+    border: 1px solid #fff;
+    width: 100%;
+    min-height: 2em;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.settings {
+    width: 50px !important;
+    height: 50px !important;
+    line-height: 50px !important;
+}
+
+.show-matching-button {
+    background-color: #fff;
+    width: 130px;
+}
+  
+.show-matching-button:disabled  {
+    background-color: gray;
+}

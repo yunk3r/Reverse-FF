@@ -1,0 +1,57 @@
+<div style="min-width: 100vw; min-height: 100vh; background-color: #242223; min-width: 300px">
+    <div style="width: 100vw; height: 50px; background-color: #2d2a2a; display: flex;">
+        <div style="color: white; font-size: 2em; padding-left: 1.5em; padding-top: 15px; font-weight:600;"> Reverse FF</div>
+        <div style="margin-left: auto;">
+            <button mat-icon-button class="settings" (click)="openSettings()">
+                <mat-icon style="color: white;"> settings</mat-icon>
+              </button>
+        </div>
+    </div>
+    <div style="width: 100vw; display: flex; align-items: center; padding: 15px; font-size: 1.2em; flex-direction: column;">
+      <div class="answer-grid">
+        <ng-container *ngIf="(this.state.currentQuestion$ | async)?.answers as answers">
+                <div class="grid-item">
+                    <div *ngIf="answers[0]">{{answers[0]?.answerText}}: {{answers[0]?.points}}</div>
+                </div>
+                <div class="grid-item">
+                    <div *ngIf="answers[1]">{{answers[1]?.answerText}}: {{answers[1]?.points}}</div>
+                </div>
+                <div class="grid-item"> 
+                    <div *ngIf="answers[2]">{{answers[2]?.answerText}}: {{answers[2]?.points}}</div>
+                </div>
+                <div class="grid-item"> 
+                    <div *ngIf="answers[3]">{{answers[3]?.answerText}}: {{answers[3]?.points}}</div>
+                </div>
+                <div class="grid-item"> 
+                    <div *ngIf="answers[4]">{{answers[4]?.answerText}}: {{answers[4]?.points}}</div>
+                </div>
+                <div class="grid-item"> 
+                    <div *ngIf="answers[5]">{{answers[5]?.answerText}}: {{answers[5]?.points}}</div>
+                </div>
+                <div class="grid-item"> 
+                    <div *ngIf="answers[6]">{{answers[6]?.answerText}}: {{answers[6]?.points}}</div>
+                </div>
+                <div class="grid-item"> 
+                    <div *ngIf="answers[7]">{{answers[7]?.answerText}}: {{answers[7]?.points}}</div>
+                </div>
+        </ng-container>
+      </div>
+      <div>
+        <mat-form-field appearance="outline" style="width: min(100vw - 10px,400px); margin-top: 10px;">
+            <mat-label>Question</mat-label>
+            <textarea [formControl]="questionInput" style="color: white; caret-color: white; resize: none; height: 60px;" matInput></textarea>
+        </mat-form-field>
+      </div>
+      <div style="display: flex; width: 100%; max-width: 400px; justify-content: space-between; gap: 5px; flex-wrap: wrap;">
+        <button mat-raised-button style="width: 100px;" (click)="submit()">Submit</button>
+        <div style="color: white; align-self: center; min-width: 3.5em;">{{this.state.lastScore$ | async}}</div>
+      </div>
+      <div style="display: flex; width: 100%; max-width: 400px; justify-content: space-between; gap: 5px; flex-wrap: wrap; margin-top: 5px;">
+        <button mat-raised-button class="show-matching-button" (click)="matching()" [disabled]="this.state.show$ | async">Show Matching</button>
+        <button mat-raised-button style="width: 120px;" (click)="getRandomQuestion()">New Question</button>
+        <button mat-raised-button style="width: 100px;" (click)="reveal()">Reveal</button>
+      </div>
+      <div *ngIf="this.state.show$ | async" style="color: white; margin-top: 15px; max-width: 400px; width: 100%;">{{(this.state.currentQuestion$ | async)?.question}}</div>
+      <div *ngIf="this.state.showMatching$ | async" style="color: white; margin-top: 15px; max-width: 400px; width: 100%;">{{matchingWords}}</div>
+    </div>
+</div>
