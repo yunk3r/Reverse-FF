@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 var builder = WebApplication.CreateBuilder(args);
 
 
+builder.WebHost.UseKestrel(option => option.AddServerHeader = false);
 // Add services to the container.
 
 var couchbaseServer = builder.Configuration["CouchBase"];
@@ -49,6 +50,7 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseCors("MyCorsPolicy");
 }
+
 
 //app.UseHttpsRedirection();
 app.UseStaticFiles();
