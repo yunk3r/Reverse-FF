@@ -19,9 +19,15 @@ public class QuestionAnswerController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetRandomQuestionAnswer()
     {
-        var item = await _QuestionAnswerContext.GetRandomQuestionAnswer();
-        return Ok(item);
-    }
+        try
+        {
+            var item = await _QuestionAnswerContext.GetRandomQuestionAnswer();
+            return Ok(item);
+        }
+        catch(Exception e)
+        {
+            return BadRequest(null);
+        }
 
     [Route("Process3")]
     [HttpGet]
