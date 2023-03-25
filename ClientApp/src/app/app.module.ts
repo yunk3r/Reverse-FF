@@ -29,6 +29,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '/', component: HomeComponent, pathMatch: 'full' },
+      { path: 'reverseff', component: HomeComponent, pathMatch: 'full' },
     ]),
     BrowserAnimationsModule,
     MatInputModule,

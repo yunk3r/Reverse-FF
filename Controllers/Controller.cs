@@ -28,6 +28,7 @@ public class QuestionAnswerController : ControllerBase
         {
             return BadRequest(null);
         }
+    }
 
     [Route("Process3")]
     [HttpGet]
