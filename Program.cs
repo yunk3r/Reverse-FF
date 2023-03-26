@@ -1,6 +1,8 @@
 using System;
+using System.IO.Compression;
 using Couchbase.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -34,6 +36,17 @@ builder.Services.AddCors(options =>
                       });
 });
 
+builder.Services.AddResponseCompression(options =>
+{
+    options.EnableForHttps = true;
+    options.Providers.Add<GzipCompressionProvider>();
+});
+
+builder.Services.Configure<GzipCompressionProviderOptions>(options =>
+{
+    options.Level = CompressionLevel.Optimal;
+});
+
 
 
 builder.Services.AddControllersWithViews();
@@ -51,10 +64,12 @@ if (!app.Environment.IsDevelopment())
     app.UseCors("MyCorsPolicy");
 }
 
+app.UseResponseCompression();
 
 //app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+
 
 
 

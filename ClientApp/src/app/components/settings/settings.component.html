@@ -1,5 +1,5 @@
 <div mat-dialog-title>Settings</div>
-<div mat-dialog-content>
+<div mat-dialog-content style="height: 65%;">
     <div>
         Difficulty:
             <mat-button-toggle-group [formControl]="difficulty" style="margin-left: 15px;">
@@ -8,4 +8,7 @@
                 <mat-button-toggle value="Hard">Hard</mat-button-toggle>
             </mat-button-toggle-group>
     </div>
+</div>
+<div mat-dialog-action style="display: flex; justify-content: end;">
+    <button mat-raised-button style="width: 100px;" (click)="close()">Close</button>
 </div>
