@@ -32,6 +32,8 @@ public matchingWords = '';
   }
 
   public async submit() {
+    try {
+      this.state.submitting$.next(true);
       const question =  this.state.currentQuestion$.getValue()?.question ?? '';
       let input = this.questionInput.value ?? '';
       if(input.endsWith('.')) {
@@ -49,6 +51,7 @@ public matchingWords = '';
       .data())[0] * 100;
 
       this.state.lastScore$.next(Number((score).toFixed(2)));
+      this.state.submitting$.next(false);
       let target = 70;
       if(this.state.settings$.getValue().difficulty === 'Easy') {
         target = 65;
@@ -60,6 +63,10 @@ public matchingWords = '';
       if(score > target) {
         this.state.show$.next(true);
       }
+    } catch {
+      this.state.submitting$.next(false);
+    }
+      
   }
 
   public getRandomQuestion() {

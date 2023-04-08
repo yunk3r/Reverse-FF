@@ -21,6 +21,7 @@ interface LoadConfig {
 export async function load(config?: LoadConfig) {
   const use = new UniversalSentenceEncoder();
   await use.load(config);
+  console.log('Backend: ' + tf.getBackend());
   return use;
 }
 

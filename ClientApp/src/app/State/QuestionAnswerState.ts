@@ -14,6 +14,7 @@ export class QuestionAnswerState {
     public show$ = new BehaviorSubject<boolean>(false);
     public settings$ = new BehaviorSubject<Settings>(default_settings);
     public showMatching$ = new BehaviorSubject<boolean>(false);
+    public submitting$ = new BehaviorSubject<boolean>(false);
 
     constructor() {
         const settings = localStorage.getItem('Settings');

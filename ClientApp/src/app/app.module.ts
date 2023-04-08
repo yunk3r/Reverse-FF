@@ -15,6 +15,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { SettingsComponent } from './components/settings/settings.component'; 
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     ReactiveFormsModule,
     MatIconModule,
     MatDialogModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

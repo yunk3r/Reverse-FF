@@ -43,7 +43,9 @@
         </mat-form-field>
       </div>
       <div style="display: flex; width: 100%; max-width: 400px; justify-content: space-between; gap: 5px; flex-wrap: wrap;">
-        <button mat-raised-button style="width: 100px;" (click)="submit()">Submit</button>
+        <button mat-raised-button style="width: 100px;" (click)="submit()"> <span *ngIf="!(this.state.submitting$ | async)">Submit</span>
+            <mat-spinner style="margin-left: 15px;" [diameter]="36" *ngIf="this.state.submitting$ | async"></mat-spinner> </button>
+        
         <div style="color: white; align-self: center; min-width: 3.5em;">{{this.state.lastScore$ | async}}</div>
       </div>
       <div style="display: flex; width: 100%; max-width: 400px; justify-content: space-between; gap: 5px; flex-wrap: wrap; margin-top: 5px;">
