@@ -16,14 +16,18 @@ public class QuestionAnswerRepository : IQuestionAnswerRepository
         try 
         {
             var collection = await (await _provider.GetBucketAsync()).DefaultCollectionAsync();
-            var idResult = await collection.Binary.IncrementAsync($"{nameof(QuestionAnswer)}_Id");
+            var idResult = await collection.Binary.IncrementAsync($"{nameof(QuestionAnswer)}_Id", options => {
+                options.Delta(1);
+                options.Initial(1);
+                options.Timeout(TimeSpan.FromSeconds(10));
+            });
             item.QuestionNumber = ((long)idResult.Content);
             await collection.InsertAsync<QuestionAnswer>(item.DocId, item);
             return true;
         } 
         catch (Exception ex)
         {
-            Console.WriteLine("ERROR");
+            Console.WriteLine($"ERROR {ex} ");
             return false;
         }
     }
